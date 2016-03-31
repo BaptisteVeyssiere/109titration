@@ -5,7 +5,7 @@
 ## Login   <VEYSSI_B@epitech.net>
 ##
 ## Started on  Tue Mar 29 15:01:55 2016 Baptiste veyssiere
-## Last update Tue Mar 29 15:13:37 2016 Baptiste veyssiere
+## Last update Thu Mar 31 00:42:46 2016 nathan scutari
 ##
 
 NAME	= 109titration
@@ -18,8 +18,9 @@ LDFLAGS	= -lm
 
 CFLAGS	= -I./include
 
-SRCS	= src/109titration.c	\
-	  src/calc.c
+SRCS	= 	src/109titration.c	\
+		src/get_next_line.c	\
+	  	src/calc.c
 
 OBJS	= $(SRCS:.c=.o)
 
