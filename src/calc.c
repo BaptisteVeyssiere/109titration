@@ -5,7 +5,7 @@
 ** Login   <VEYSSI_B@epitech.net>
 **
 ** Started on  Tue Mar 29 15:09:20 2016 Baptiste veyssiere
-** Last update Tue Mar 29 16:18:31 2016 Baptiste veyssiere
+** Last update Thu Mar 31 16:01:05 2016 Baptiste veyssiere
 */
 
 #include <math.h>
@@ -48,6 +48,9 @@ void	calc(float **tab, int length)
   printf("\nEquivalent point at %.2g ml\n", max);
   printf("\nSecond derivative:\n");
   i = 1;
+  sd_a = 0;
+  sd_b = 0;
+  sd_c = 0;
   while (++i < (length - 2))
     {
       vol = tab[i][0];
@@ -55,7 +58,7 @@ void	calc(float **tab, int length)
       derive_max = (tab[i + 2][1] - tab[i][1]) / (tab[i + 2][0] - tab[i][0]);
       derive = (derive_max - derive_min) / (tab[i + 1][0] - tab[i - 1][0]);
       if (i == (index - 1))
-	sd_a = derive;
+  	sd_a = derive;
       else if (i == index)
 	sd_b = derive;
       else if (i == (index + 1))
@@ -71,14 +74,14 @@ void	calc(float **tab, int length)
   while (findex <= (tab[index + 1][0] + 0.1))
     {
       vol = findex;
-      if (findex <= tab[index][0])
-	derive += increment_min;
-      else
-	derive += increment_max;;
+      if (findex <= tab[index][0] && sd_a)
+  	derive += increment_min;
+      else if (sd_c)
+  	derive += increment_max;
       if (derive < max && derive >= 0.001)
-	derive_min = findex;
+  	derive_min = findex;
       printf("volume: %.2g ml -> %.2f\n", vol, derive);
       findex += 0.1;
     }
-  printf("\nEquivalent point at %.2g ml\n", derive_min);
+  /* printf("\nEquivalent point at %.2g ml\n", derive_min); */
 }
